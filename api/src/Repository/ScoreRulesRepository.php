@@ -13,10 +13,7 @@ use Doctrine\ORM\EntityRepository;
  * @method User[] findAll()
  * @method User[] findBy(array $criteria, ?array $orderBy = null, $limit = null, $offset = null)
  */
-class UserRepository extends EntityRepository
+class ScoreRulesRepository extends EntityRepository
 {
-    public function existsByEmail(string $email): bool
-    {
-        return null !== $this->findOneBy(['email' => $email]);
-    }
+
 }

@@ -65,6 +65,8 @@ services:
             - MYSQL_PASSWORD=secret
             - MYSQL_USER=app
             - MYSQL_DATABASE=app
+        volumes:
+            - mysql-base:/var/lib/mysql
 
 volumes:
-    api-postgres:
+    mysql-base:

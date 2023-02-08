@@ -27,18 +27,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private string $phone;
 
-    #[ORM\Column(type: 'integer')]
-    #[ORM\ManyToOne(targetEntity: TypePhone::class, inversedBy: 'id')]
-    private int $phoneType;
-
     #[ORM\Column(type: 'string', unique: true)]
     private string $email;
 
     #[ORM\Column(type: 'string')]
     private string $password;
 
-    #[ORM\Column(type: 'string', columnDefinition: "ENUM('visible', 'invisible')")]
-    private string $typeEducation;
+    #[ORM\ManyToOne(targetEntity: EducationType::class, inversedBy: 'users')]
+    private EducationType $educationType;
 
     #[ORM\Column(type: 'boolean', options: ['default' => '0'])]
     private bool $agreement;
@@ -83,16 +79,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->phone = $phone;
     }
 
-    public function getPhoneType(): int
-    {
-        return $this->phoneType;
-    }
-
-    public function setPhoneType(int $phoneType): void
-    {
-        $this->phoneType = $phoneType;
-    }
-
     public function getEmail(): string
     {
         return $this->email;
@@ -103,19 +89,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password;
     }
 
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
+    }
+
     public function setEmail(string $email): void
     {
         $this->email = $email;
     }
 
-    public function getTypeEducation(): string
+    public function getEducationType(): EducationType
     {
-        return $this->typeEducation;
+        return $this->educationType;
     }
 
-    public function setTypeEducation(string $typeEducation): void
+    public function setTypeEducation(EducationType $educationType): void
     {
-        $this->typeEducation = $typeEducation;
+        $this->educationType = $educationType;
     }
 
     public function isAgreement(): bool
