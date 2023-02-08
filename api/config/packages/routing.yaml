@@ -10,6 +10,3 @@ when@prod:
     framework:
         router:
             strict_requirements: null
-
-api_login_check:
-    path: /api/v1/auth/login

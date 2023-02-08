@@ -61,8 +61,10 @@ services:
         ports:
             - 3306:3306
         environment:
-            - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
-            - MYSQL_DATABASE=${DB_NAME}
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_PASSWORD=secret
+            - MYSQL_USER=app
+            - MYSQL_DATABASE=app
 
 volumes:
     api-postgres:
