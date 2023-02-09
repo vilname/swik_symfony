@@ -8,28 +8,100 @@ use App\Interfaces\CommandInterface;
 
 class Command implements CommandInterface
 {
-    public string $firstName;
+    private string $firstName;
 
-    public string $lastName;
+    private string $lastName;
 
-    public string $phone;
+    private string $phone;
 
-    public string $email;
+    private string $email;
 
-    public string $educationType;
+    private string $educationType;
 
-    public string $password;
+    private string $password;
 
-    public string $agreement;
+    private string $agreement;
 
-    public function __construct(array $data)
+    public function getFirstName(): string
     {
-        $this->firstName = !empty($data['firstName']) ? $data['firstName'] : null;
-        $this->lastName = !empty($data['lastName']) ? $data['lastName'] : null;
-        $this->phone = !empty($data['phone']) ? $data['phone'] : null;
-        $this->email = !empty($data['email']) ? $data['email'] : null;
-        $this->educationType = !empty($data['educationType']) ? $data['educationType'] : null;
-        $this->password = !empty($data['password']) ? $data['password'] : null;
-        $this->agreement = !empty($data['agreement']) ? $data['agreement'] : null;
+        return $this->firstName;
     }
+
+    public function setFirstName(string $firstName): void
+    {
+        $this->firstName = $firstName;
+    }
+
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(string $lastName): void
+    {
+        $this->lastName = $lastName;
+    }
+
+    public function getPhone(): string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): void
+    {
+        $this->phone = $phone;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
+    public function getEducationType(): string
+    {
+        return $this->educationType;
+    }
+
+    public function setEducationType(string $educationType): void
+    {
+        $this->educationType = $educationType;
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
+    }
+
+    public function getAgreement(): string
+    {
+        return $this->agreement;
+    }
+
+    public function setAgreement(string $agreement): void
+    {
+        $this->agreement = $agreement;
+    }
+
+//    public function __construct(array $data)
+//    {
+//        $this->firstName = !empty($data['firstName']) ? $data['firstName'] : null;
+//        $this->lastName = !empty($data['lastName']) ? $data['lastName'] : null;
+//        $this->phone = !empty($data['phone']) ? $data['phone'] : null;
+//        $this->email = !empty($data['email']) ? $data['email'] : null;
+//        $this->educationType = !empty($data['educationType']) ? $data['educationType'] : null;
+//        $this->password = !empty($data['password']) ? $data['password'] : null;
+//        $this->agreement = !empty($data['agreement']) ? $data['agreement'] : null;
+//    }
+
+
 }
