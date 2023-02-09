@@ -13,15 +13,15 @@ services:
     frontend:
         build:
             context: docker/frontend/development/nginx
-        depends_on:
-            - frontend-node
+        volumes:
+            - ./frontend:/app
 
     frontend-node:
         build:
             context: docker/frontend/development/node
         volumes:
             - ./frontend:/app
-        command: sh -c "until [ -f .ready ] ; do sleep 1 ; done && yarn start"
+#        command: sh -c "until [ -f .ready ] ; do sleep 1 ; done && yarn start"
         tty: true
 
     frontend-node-cli:

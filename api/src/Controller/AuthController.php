@@ -6,8 +6,11 @@ namespace App\Controller;
 
 use App\Command\SignUp\Command;
 use App\Command\SignUp\Handle;
+use OpenApi\Attributes\QueryParameter;
 use OpenApi\Attributes\RequestBody;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\InputBag;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use OpenApi\Annotations as OA;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,9 +43,11 @@ class AuthController extends AbstractController
      * )
      * @OA\RequestBody(@Model(type=SignUpRequest::class))
      */
-    #[Route(path: '/v1/auth/signUp', methods: ['POST'])]
-    public function signUp(#[RequestBody] Command $command): Response
+    #[Route(path: '/api/v1/auth/signUp', methods: ['GET'])]
+    public function signUp(Request $request): Response
     {
+        $command = new Command($request->query->all());
+
         dd($command);
     }
 }
