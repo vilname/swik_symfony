@@ -40,7 +40,7 @@ class AuthController extends AbstractController
      * )
      * @OA\RequestBody(@Model(type=SignUpRequest::class))
      */
-    #[Route(path: '/api/v1/auth/signUp', methods: ['POST'])]
+    #[Route(path: '/v1/auth/signUp', methods: ['POST'])]
     public function signUp(#[RequestBody] Command $command): Response
     {
         dd($command);
