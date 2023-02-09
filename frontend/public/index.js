@@ -12,7 +12,16 @@ form.onsubmit = function (event) {
 
     console.log('formItem', formItem)
 
-    fetch("http://localhost:8081/api/v1/auth/signUp?" + new URLSearchParams(formItem))
+    fetch("http://localhost:8081/api/v1/auth/signUp", {
+        method: "post",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+
+        //make sure to serialize your JSON body
+        body: JSON.stringify(formItem)
+    })
         .then( (response) => {
             console.log('response', response);
         });

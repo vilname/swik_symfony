@@ -20,7 +20,7 @@ class Command implements CommandInterface
 
     public string $password;
 
-    public string $agreement;
+    public bool $agreement;
 
     public function __construct(array $data)
     {
@@ -30,6 +30,6 @@ class Command implements CommandInterface
         $this->email = !empty($data['email']) ? $data['email'] : '';
         $this->educationType = !empty($data['educationType']) ? $data['educationType'] : '';
         $this->password = !empty($data['password']) ? $data['password'] : '';
-        $this->agreement = !empty($data['agreement']) ? $data['agreement'] : '';
+        $this->agreement = !empty($data['agreement']);
     }
 }

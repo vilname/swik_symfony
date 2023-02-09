@@ -7,7 +7,7 @@ namespace App\Exception;
 use DomainException;
 use Throwable;
 
-class UserAlreadyExistsException extends DomainException
+class IncorrectEducationTypeException extends DomainException
 {
     public function __construct(string $message = "", int $code = 0, ?Throwable $previous = null)
     {

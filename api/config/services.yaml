@@ -6,6 +6,7 @@
 parameters:
     exceptions:
         App\Exception\UserAlreadyExistsException: {code: 409, hidden: false}
+        App\Exception\IncorrectEducationTypeException: {code: 400, hidden: false}
 
 services:
     # default configuration for services in *this* file
@@ -21,6 +22,3 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
-
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones

@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Repository\EducationTypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Table(name: '`type_education`')]
-#[ORM\Entity]
+#[ORM\Table(name: '`type_educations`')]
+#[ORM\Entity(repositoryClass: EducationTypeRepository::class)]
 class EducationType
 {
     #[ORM\Id]
@@ -17,7 +18,10 @@ class EducationType
     private int $id;
 
     #[ORM\Column(type: 'string')]
-    private string $email;
+    private string $name;
+
+    #[ORM\Column(type: 'string')]
+    private string $type;
 
     #[ORM\OneToMany(mappedBy: 'educationType', targetEntity: User::class)]
     private ArrayCollection $users;

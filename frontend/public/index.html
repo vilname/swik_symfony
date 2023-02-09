@@ -16,6 +16,14 @@
                 <input type="text" class="form-control" id="firstName" name="firstName">
             </div>
             <div class="mb-3">
+                <label for="lastName" class="form-label">Фамилия</label>
+                <input type="text" class="form-control" id="lastName" name="lastName">
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Телефон</label>
+                <input type="text" class="form-control" id="phone" name="phone">
+            </div>
+            <div class="mb-3">
                 <label for="email" class="form-label">Почта</label>
                 <input type="email" class="form-control" id="email" name="email">
             </div>
@@ -23,9 +31,18 @@
                 <label for="password" class="form-label">Пароль</label>
                 <input type="password" class="form-control" id="password" name="password">
             </div>
+            <div class="form-group">
+                <label for="educationType">Образование</label>
+                <select class="form-control" id="educationType" name="educationType">
+                    <option></option>
+                    <option value="higher">Высшее образование</option>
+                    <option value="special">Специальное образование</option>
+                    <option value="secondary">Среднее образование</option>
+                </select>
+            </div>
             <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                <input type="checkbox" class="form-check-input" id="agreement" name="agreement">
+                <label class="form-check-label" for="agreement">Я даю согласие на обработку моих личных данных</label>
             </div>
             <input type="submit" class="btn btn-primary" value="Submit">
         </form>

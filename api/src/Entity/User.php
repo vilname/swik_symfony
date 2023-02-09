@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Table(name: '`user`')]
+#[ORM\Table(name: '`users`')]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -157,6 +157,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         string $lastName,
         string $phone,
         string $email,
+        EducationType $educationType,
         bool $agreement
     ):self {
         $self = new self();
@@ -165,6 +166,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $self->lastName = $lastName;
         $self->phone = $phone;
         $self->email = $email;
+        $self->educationType = $educationType;
         $self->agreement = $agreement;
 
         return $self;
