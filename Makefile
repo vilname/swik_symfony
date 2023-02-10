@@ -27,4 +27,4 @@ frontend-npm-install:
 	docker-compose run --rm frontend-node-cli npm install
 
 migration-init:
-	docker-compose run --rm api-php-cli php bin/console doctrine:migrations:migrate
+	docker-compose run --rm api-php-cli php bin/console doctrine:migrations:migrate --no-interaction

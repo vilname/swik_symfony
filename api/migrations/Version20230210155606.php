@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230210085952 extends AbstractMigration
+final class Version20230210155606 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -21,7 +21,7 @@ final class Version20230210085952 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE `education_types` (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, type VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE `score_rules` (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, type ENUM(\'phone\', \'email\', \'education\', \'agreement\'), value VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE `score_rules` (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) DEFAULT NULL, type ENUM(\'phone\', \'email\', \'education\', \'agreement\') NOT NULL, value VARCHAR(255) DEFAULT NULL, score INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE `users` (id INT AUTO_INCREMENT NOT NULL, education_type_id INT DEFAULT NULL, first_name VARCHAR(255) NOT NULL, last_name VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, agreement TINYINT(1) DEFAULT 0 NOT NULL, UNIQUE INDEX UNIQ_1483A5E9E7927C74 (email), INDEX IDX_1483A5E9D968E34B (education_type_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE `users` ADD CONSTRAINT FK_1483A5E9D968E34B FOREIGN KEY (education_type_id) REFERENCES `education_types` (id)');
     }

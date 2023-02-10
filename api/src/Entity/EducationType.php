@@ -32,11 +32,28 @@ class EducationType
         $this->users = new ArrayCollection();
     }
 
-    /**
-     * @return ArrayCollection
-     */
     public function getUsers(): ArrayCollection
     {
         return $this->users;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): void
+    {
+        $this->type = $type;
     }
 }

@@ -42,7 +42,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[Assert\NotBlank]
     #[ORM\ManyToOne(targetEntity: EducationType::class, inversedBy: 'users')]
-    private $educationType;
+    private EducationType $educationType;
 
     #[Assert\NotBlank]
     #[ORM\Column(type: 'boolean', options: ['default' => '0'])]
@@ -113,7 +113,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->educationType;
     }
 
-    public function setTypeEducation(EducationType $educationType): void
+    public function setEducationType(EducationType $educationType): void
     {
         $this->educationType = $educationType;
     }
