@@ -11,7 +11,10 @@ use App\Interfaces\CommandHandleInterface;
 use App\Interfaces\CommandInterface;
 use App\Repository\EducationTypeRepository;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Security\Http\Authentication\AuthenticationSuccessHandler;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -22,14 +25,15 @@ class Handle implements CommandHandleInterface
         private EducationTypeRepository$educationTypeRepository,
         private UserPasswordHasherInterface $hasher,
         private EntityManagerInterface $entityManager,
-        private ValidatorInterface $validator
+        private ValidatorInterface $validator,
+        private AuthenticationSuccessHandler $authenticationSuccessHandler
     ) {}
 
     /**
      * @param Command $command
      * @return void
      */
-    public function handle(CommandInterface $command)
+    public function handle(CommandInterface $command): Response
     {
         if ($this->userRepository->existsByEmail($command->email)) {
             throw new UserAlreadyExistsException();
@@ -45,7 +49,7 @@ class Handle implements CommandHandleInterface
             throw new IncorrectEducationTypeException();
         }
 
-        $userEntity = User::create(
+        $user = User::create(
             $command->firstName,
             $command->lastName,
             $command->phone,
@@ -55,28 +59,21 @@ class Handle implements CommandHandleInterface
         );
 
         $hashedPassword = $this->hasher->hashPassword(
-            $userEntity,
+            $user,
             $command->password
         );
 
-        $userEntity->setPassword($hashedPassword);
+        $user->setPassword($hashedPassword);
 
-        echo "<pre>";
-        print_r($userEntity);
-        echo "</pre>";
-
-        $errors = $this->validator->validate($userEntity);
-
-        echo "<pre>";
-        print_r($errors);
-        echo "</pre>";
-        die();
+        $errors = $this->validator->validate($user);
 
         if (count($errors) > 0) {
 
         }
 
-        $this->entityManager->persist($userEntity);
+        $this->entityManager->persist($user);
         $this->entityManager->flush();
+
+        return $this->authenticationSuccessHandler->handleAuthenticationSuccess($user);
     }
 }

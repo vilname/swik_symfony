@@ -42,7 +42,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[Assert\NotBlank]
     #[ORM\ManyToOne(targetEntity: EducationType::class, inversedBy: 'users')]
-    private EducationType $educationType;
+    private $educationType;
 
     #[Assert\NotBlank]
     #[ORM\Column(type: 'boolean', options: ['default' => '0'])]
@@ -147,9 +147,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->email;
     }
 
-    public function getUserIdentifier(): int
+    public function getUserIdentifier(): string
     {
-        return $this->id;
+        return $this->email;
     }
 
     public static function create(
@@ -157,7 +157,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         string $lastName,
         string $phone,
         string $email,
-        EducationType $educationType,
+        $educationType,
         bool $agreement
     ):self {
         $self = new self();

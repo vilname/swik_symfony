@@ -6,9 +6,10 @@ namespace App\Entity;
 
 use App\Repository\EducationTypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Table(name: '`type_educations`')]
+#[ORM\Table(name: '`education_types`')]
 #[ORM\Entity(repositoryClass: EducationTypeRepository::class)]
 class EducationType
 {
@@ -24,7 +25,7 @@ class EducationType
     private string $type;
 
     #[ORM\OneToMany(mappedBy: 'educationType', targetEntity: User::class)]
-    private ArrayCollection $users;
+    private Collection $users;
 
     public function __construct()
     {

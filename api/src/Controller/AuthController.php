@@ -23,15 +23,17 @@ class AuthController extends AbstractController
     }
 
     /**
-     *
-     * @OA\RequestBody(@Model(type=Command::class))
+     * @OA\Response(
+     *     response=200,
+     *     description="Signs up a user",
+     *     @OA\JsonContent(
+     *         @OA\Property(property="token", type="string")
+     *     )
+     * )
      */
     #[Route(path: '/api/v1/auth/signUp', methods: ['POST'])]
     public function signUp(Request $request): Response
     {
-        $handle = $this->handle->handle(new Command(json_decode($request->getContent(), true)));
-
-
-        return new Response();
+        return $this->handle->handle(new Command(json_decode($request->getContent(), true)));
     }
 }
