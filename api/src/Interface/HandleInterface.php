@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Interfaces;
+namespace App\Interface;
 
-interface CommandHandleInterface
+interface HandleInterface
 {
     public function handle(CommandInterface $command);
 }

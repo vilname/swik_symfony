@@ -44,6 +44,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne(targetEntity: EducationType::class, inversedBy: 'users')]
     private EducationType $educationType;
 
+    #[ORM\OneToOne(inversedBy: 'user', targetEntity: ScoreUsers::class)]
+    private ?ScoreUsers $score;
+
     #[Assert\NotBlank]
     #[ORM\Column(type: 'boolean', options: ['default' => '0'])]
     private bool $agreement;
@@ -116,6 +119,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEducationType(EducationType $educationType): void
     {
         $this->educationType = $educationType;
+    }
+
+    public function getScore(): ?ScoreUsers
+    {
+        return $this->score;
+    }
+
+    public function setScore(?ScoreUsers $score): void
+    {
+        $this->score = $score;
     }
 
     public function isAgreement(): bool

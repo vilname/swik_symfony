@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Command\SignUp;
 
-use App\Interfaces\CommandInterface;
+use App\Interface\CommandInterface;
 
 class Command implements CommandInterface
 {

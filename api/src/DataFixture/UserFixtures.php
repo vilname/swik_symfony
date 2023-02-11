@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\DataFixtures;
+namespace App\DataFixture;
 
 use App\Entity\EducationType;
 use App\Entity\User;
@@ -64,7 +64,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 'first_name' => 'Татьяна',
                 'last_name' => 'Свиридова',
                 'education_type' => 'secondary',
-                'phone' => '89213245573',
+                'phone' => '89023245573',
                 'email' => 'user2@gmal.com',
                 'password' => static::HASH_PASSWORD,
                 'agreement' => rand(0, 1)
@@ -118,7 +118,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 'first_name' => 'Глеб',
                 'last_name' => 'Правков',
                 'education_type' => 'secondary',
-                'phone' => '89803245573',
+                'phone' => '89023245573',
                 'email' => 'user8@mail.com',
                 'password' => static::HASH_PASSWORD,
                 'agreement' => rand(0, 1)
@@ -136,7 +136,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 'first_name' => 'Годимир',
                 'last_name' => 'Огнеяр',
                 'education_type' => 'higher',
-                'phone' => '89333245573',
+                'phone' => '89053245573',
                 'email' => 'user10@gmal.com',
                 'password' => static::HASH_PASSWORD,
                 'agreement' => rand(0, 1)
@@ -163,7 +163,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 'first_name' => 'Святополк',
                 'last_name' => 'Рюрикович',
                 'education_type' => 'higher',
-                'phone' => '89203245573',
+                'phone' => '89053245573',
                 'email' => 'user13@yandex.com',
                 'password' => static::HASH_PASSWORD,
                 'agreement' => rand(0, 1)
@@ -199,7 +199,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 'first_name' => 'Серафим',
                 'last_name' => 'Дерябин',
                 'education_type' => 'higher',
-                'phone' => '89203245573',
+                'phone' => '89053245573',
                 'email' => 'user17@gmal.com',
                 'password' => static::HASH_PASSWORD,
                 'agreement' => rand(0, 1)

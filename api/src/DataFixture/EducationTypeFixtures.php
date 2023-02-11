@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\DataFixtures;
+namespace App\DataFixture;
 
 use App\Entity\EducationType;
 use Doctrine\Bundle\FixturesBundle\Fixture;

@@ -11,6 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: ScoreRulesRepository::class)]
 class ScoreRules
 {
+    public const PHONE_TYPE = 'phone';
+    public const EMAIL_TYPE = 'email';
+    public const EDUCATION_TYPE = 'education';
+    public const AGREEMENT_TYPE = 'agreement';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]

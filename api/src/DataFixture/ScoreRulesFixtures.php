@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\DataFixtures;
+namespace App\DataFixture;
 
 use App\Entity\ScoreRules;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -62,7 +62,7 @@ class ScoreRulesFixtures extends Fixture
             [
                 'type' => 'phone',
                 'name' => 'Билайн',
-                'value' => ['978', '980', '981', '982', '983'],
+                'value' => ['900', '902', '903', '904', '905', '906'],
                 'score' => 5
             ],
             [

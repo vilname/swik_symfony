@@ -26,5 +26,8 @@ api-composer-install:
 frontend-npm-install:
 	docker-compose run --rm frontend-node-cli npm install
 
-migration-init:
+migrations-init:
 	docker-compose run --rm api-php-cli php bin/console doctrine:migrations:migrate --no-interaction
+
+fixtures-init:
+	docker-compose run --rm api-php-cli php bin/console doctrine:fixtures:load --no-interaction

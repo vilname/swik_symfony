@@ -7,18 +7,17 @@ namespace App\Command\SignUp;
 use App\Entity\User;
 use App\Exception\IncorrectEducationTypeException;
 use App\Exception\UserAlreadyExistsException;
-use App\Interfaces\CommandHandleInterface;
-use App\Interfaces\CommandInterface;
+use App\Interface\HandleInterface;
+use App\Interface\CommandInterface;
 use App\Repository\EducationTypeRepository;
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Security\Http\Authentication\AuthenticationSuccessHandler;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class Handle implements CommandHandleInterface
+class Handle implements HandleInterface
 {
     public function __construct(
         private UserRepository $userRepository,
