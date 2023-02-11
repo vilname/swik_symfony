@@ -16,7 +16,8 @@ class ScoreUsers
     #[ORM\Column(type: 'integer')]
     private int $id;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'score')]
+    #[ORM\OneToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(name:'user_id', referencedColumnName: 'id', onDelete: 'cascade')]
     private User $user;
 
     #[ORM\Column(type: 'integer', nullable: true)]

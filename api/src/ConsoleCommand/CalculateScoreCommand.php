@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\ConsoleCommand;
 
+use App\Command\CalculateScore\Handle;
 use App\Command\CalculateScoreByUserId\Handle as HandleByUserId;
 use App\Command\CalculateScoreByUserId\Command as CommandByUserId;
 use App\Command\CalculateScoreByUserId\Result;
@@ -21,17 +22,24 @@ use Symfony\Component\Console\Output\OutputInterface;
 )]
 class CalculateScoreCommand extends Command
 {
-    public function __construct(private HandleByUserId $handleByUserId)
-    {
+    public function __construct(
+        private readonly HandleByUserId $handleByUserId,
+        private readonly Handle $handle
+    ) {
         parent::__construct();
     }
 
+    /**
+     * @throws \Exception
+     */
     public function execute(InputInterface $input, OutputInterface $output): int
     {
         $userId = (int)$input->getArgument('userId');
         if (!empty($userId)) {
             $response = $this->handleByUserId->handle(new CommandByUserId($userId));
             $responses = [$response];
+        } else {
+            $responses = $this->handle->handle();
         }
 
         $this->responseOutput($output, $responses);
@@ -50,6 +58,10 @@ class CalculateScoreCommand extends Command
      */
     private function responseOutput(OutputInterface $output, array $responses)
     {
+        if (empty($responses)) {
+            $output->writeln('Нет пользователей без расчитанного скоринга!');
+        }
+
         foreach ($responses as $response) {
             $user = sprintf(
                 'Id: %d, Пользователь: %s',

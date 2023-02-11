@@ -7,9 +7,18 @@ namespace App\Service;
 use App\Entity\ScoreRules;
 use App\Entity\ScoreUsers;
 use App\Entity\User;
+use App\Helper\SubstringHelper;
+use App\Repository\ScoreRulesRepository;
+use App\Repository\ScoreUsersRepository;
 
 class CalculateScoreService
 {
+    public function __construct(
+        private readonly ScoreRulesRepository $scoreRulesRepository,
+        private readonly ScoreUsersRepository $scoreUsersRepository,
+    ) {
+    }
+
     public function addScoreUser(array $scoreRules, ScoreUsers $scoreUser, User $user): ScoreUsers
     {
         $scoreTotal = 0;
@@ -39,5 +48,31 @@ class CalculateScoreService
         $scoreUser->setTotalScore($scoreTotal);
 
         return $scoreUser;
+    }
+
+    /**
+     * @return ScoreRules[] array
+     */
+    public function getScoreRules(User $user): array
+    {
+        $phoneCode = SubstringHelper::getPhoneCode($user->getPhone());
+        $emailCode = SubstringHelper::getEmailCode($user->getEmail());
+        $educationCode = $user->getEducationType()->getType();
+        $isAgreement = $user->isAgreement();
+
+        return $this->scoreRulesRepository->getScoreByValues($phoneCode, $emailCode, $educationCode, $isAgreement);
+    }
+
+    /**
+     * @param ScoreRules[] $scoreRules
+     */
+    public function getScoreUser(User $user, array $scoreRules): ScoreUsers
+    {
+        $scoreUser = $this->scoreUsersRepository->findOneBy(['user' => $user]);
+        if (is_null($scoreUser)) {
+            $scoreUser = new ScoreUsers();
+        }
+
+        return $this->addScoreUser($scoreRules, $scoreUser, $user);
     }
 }

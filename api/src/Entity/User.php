@@ -44,7 +44,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne(targetEntity: EducationType::class, inversedBy: 'users')]
     private EducationType $educationType;
 
-    #[ORM\OneToOne(inversedBy: 'user', targetEntity: ScoreUsers::class)]
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: ScoreUsers::class)]
+    #[ORM\JoinColumn(name:'score_id', referencedColumnName: 'id')]
     private ?ScoreUsers $score;
 
     #[Assert\NotBlank]
