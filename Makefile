@@ -1,5 +1,6 @@
+init: docker-init project-init
 docker-init: docker-down-clear docker-pull docker-build docker-up
-project-init: api-composer-install migrations-init fixtures-init score-init
+project-init: api-composer-install migrations-init fixtures-init
 up: docker-up
 down: docker-down
 restart: down up
