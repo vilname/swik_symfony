@@ -7,7 +7,8 @@ namespace App\Repository;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 
 class UserRepository extends EntityRepository
 {
@@ -19,5 +20,28 @@ class UserRepository extends EntityRepository
     public function existsByEmail(string $email): bool
     {
         return null !== $this->findOneBy(['email' => $email]);
+    }
+
+    public function getQueryList(): Query
+    {
+        return $this->createQueryBuilderUser()->getQuery();
+    }
+
+    /**
+     * @return User[]
+     */
+    public function getUsersByLimit(Query $query, int $pageSize, int $offset): array
+    {
+        return $query->setMaxResults($pageSize)->setFirstResult($offset)->getResult();
+    }
+
+    public function getCountRowInQuery(Query $query): ?int
+    {
+        return $this->createQueryBuilderUser()->select('count(users.id)')->getQuery()->getSingleScalarResult();
+    }
+
+    private function createQueryBuilderUser(): QueryBuilder
+    {
+        return $this->createQueryBuilder('users')->where('users.score is not null');
     }
 }

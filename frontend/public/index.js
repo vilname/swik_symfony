@@ -10,8 +10,6 @@ form.onsubmit = function (event) {
         formItem[key] = value;
     }
 
-    console.log('formItem', formItem)
-
     fetch("http://localhost:8081/api/v1/auth/signUp", {
         method: "post",
         headers: {

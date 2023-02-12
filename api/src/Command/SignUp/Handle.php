@@ -20,12 +20,12 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class Handle implements HandleInterface
 {
     public function __construct(
-        private UserRepository $userRepository,
-        private EducationTypeRepository$educationTypeRepository,
-        private UserPasswordHasherInterface $hasher,
-        private EntityManagerInterface $entityManager,
-        private ValidatorInterface $validator,
-        private AuthenticationSuccessHandler $authenticationSuccessHandler
+        private readonly UserRepository $userRepository,
+        private readonly EducationTypeRepository$educationTypeRepository,
+        private readonly UserPasswordHasherInterface $hasher,
+        private readonly EntityManagerInterface $entityManager,
+        private readonly ValidatorInterface $validator,
+        private readonly AuthenticationSuccessHandler $authenticationSuccessHandler
     ) {}
 
     /**

@@ -6,10 +6,11 @@ namespace App\Entity;
 
 use App\Repository\ScoreUsersRepository;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 #[ORM\Table(name: '`score_users`')]
 #[ORM\Entity(repositoryClass: ScoreUsersRepository::class)]
-class ScoreUsers
+class ScoreUsers implements JsonSerializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -103,5 +104,16 @@ class ScoreUsers
     public function setTotalScore(int $totalScore): void
     {
         $this->totalScore = $totalScore;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'phoneScore' => $this->phoneScore,
+            'emailScore' => $this->emailScore,
+            'educationScore' => $this->educationScore,
+            'agreementScore' => $this->agreementScore,
+            'totalScore' => $this->totalScore,
+        ];
     }
 }
