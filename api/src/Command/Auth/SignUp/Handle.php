@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Command\SignUp;
+namespace App\Command\Auth\SignUp;
 
 use App\Entity\User;
 use App\Exception\IncorrectEducationTypeException;
 use App\Exception\UserAlreadyExistsException;
-use App\Interface\HandleInterface;
 use App\Interface\CommandInterface;
+use App\Interface\HandleInterface;
 use App\Repository\EducationTypeRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;

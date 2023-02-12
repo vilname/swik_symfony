@@ -16,11 +16,14 @@ form.onsubmit = function (event) {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-
-        //make sure to serialize your JSON body
         body: JSON.stringify(formItem)
     })
         .then( (response) => {
-            console.log('response', response);
+            return response.json();
+        })
+        .then((json) => {
+            console.log('json', json)
+
+            document.querySelector('.js-content').innerHTML = json.token;
         });
 }

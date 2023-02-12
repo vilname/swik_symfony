@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Command\Score\List;
 
-use App\common\ResultPagination;
+use App\Common\ResultPagination;
 use App\Interface\ResultInterface;
 
 class Result implements ResultInterface

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Command\Score\List;
 
-use App\common\ResultPagination;
+use App\Common\ResultPagination;
 use App\Interface\CommandInterface;
 use App\Interface\HandleInterface;
 use App\Repository\UserRepository;

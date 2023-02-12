@@ -1,4 +1,5 @@
-init: docker-down-clear docker-pull docker-build docker-up
+docker-init: docker-down-clear docker-pull docker-build docker-up
+project-init: api-composer-install migrations-init fixtures-init score-init
 up: docker-up
 down: docker-down
 restart: down up
@@ -18,8 +19,6 @@ docker-pull:
 docker-build:
 	docker-compose build
 
-api-init: api-composer-install
-
 api-composer-install:
 	docker-compose run --rm api-php-cli composer install
 
@@ -34,3 +33,6 @@ fixtures-init:
 
 score-init:
 	docker-compose run --rm api-php-cli php bin/console app:calculate-score
+
+test-run:
+	docker-compose run --rm api-php-cli php bin/phpunit
